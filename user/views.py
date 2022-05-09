@@ -46,6 +46,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage  
 from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
+from user.api.serializers import EmployerProfileSerializer
 User = get_user_model()
 # from user.forms import EmployerInformationForm
 
@@ -355,3 +356,29 @@ class JobView(APIView):
         new_job.save()
         serializer = JobSerializer(new_job)
         return Response(serializer.data)
+
+
+@api_view(['GET'])
+def employerList(request):
+    '''Get all employer profiles'''
+    # user = request.user
+    employers = Employer.objects.all()
+    serializer = EmployerProfileSerializer(employers, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def employerDetail(request, pk):
+    '''Get specific employer profile'''
+    # user = request.user
+    employers = Employer.objects.get(id=pk)
+    serializer = EmployerProfileSerializer(employers, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def employerProfileCreate(request):
+    '''Create employer profile'''
+    # user = request.user
+    serializer = EmployerProfileSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)

@@ -27,6 +27,9 @@ urlpatterns = [
     path('activate/(<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
         activate, name='activate'),  
     path('profile/', views.Profile, name='UpdateUserProfile'),
+    path('employer-list/', views.employerList, name='employer-list'),
+    path('employer-detail/<str:pk>/', views.employerDetail, name='employer-detail'),
+    path('employer-profile-create/', views.employerProfileCreate, name='employer-profile-create'),
     
    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -129,3 +129,11 @@ class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
         fields = ('title', 'location', 'requirements', 'jobtype')
+
+class EmployerProfileSerializer(serializers.ModelSerializer):
+    '''
+    a serializer for employer profile objects '''
+
+    class Meta:
+        model = Employer
+        fields = '__all__'

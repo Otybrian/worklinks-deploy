@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MpesaPayment,Job,Profile
+from .models import MpesaPayment,Job,Profile, Employer
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
@@ -31,3 +31,5 @@ class UpdateUserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['full_name','profile_image','email','bio','resume','skills','work_experience','address','referees']
+
+
